@@ -2,8 +2,7 @@
 const arr = [1, 2, 3, 4];
 
 function doubleItem(data) {
-  const doubleArr = arr.map((item) => item * 2);
-  return doubleArr;
+  return arr.map((item) => item * 2);
 }
 
 console.log("double", doubleItem(arr));
@@ -52,12 +51,11 @@ function calc(arr) {
           ...prev,
           even: prev.even + curr,
         };
-      } else {
-        return {
-          ...prev,
-          odd: prev.odd + curr,
-        };
       }
+      return {
+        ...prev,
+        odd: prev.odd + curr,
+      };
 
       // return prev;
     },
@@ -101,7 +99,7 @@ const carts = [
 
 // const totalPrice = ???
 function totalCarts(listItems) {
-  let totalPrice = listItems.reduce((a, b) => a + b.price, 1);
+  let totalPrice = listItems.reduce((a, b) => a + b.price, 0);
   return totalPrice;
 }
 totalCarts(carts);
