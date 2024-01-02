@@ -2,15 +2,11 @@
 const arr = [1, 2, 3, 4];
 
 function doubleItem(data) {
-  let arrCopy = [];
-
-  for (let i = 0; i < data.length; i++) {
-    arrCopy.push(data[i] * 2);
-  }
-  return arrCopy;
+  const doubleArr = arr.map((item) => item * 2);
+  return doubleArr;
 }
 
-console.log(doubleItem(arr));
+console.log("double", doubleItem(arr));
 
 // 2. Chỉ lấy những số chẵn trong mảng trên
 // input: [2, 3, 4, 5] -> output: [2, 4]
@@ -23,7 +19,7 @@ function evenNumber(dataList) {
 console.log(evenNumber(lists));
 
 // 3. Tìm số chẵn đầu tiên.
-// 3. input [1, 2, 3, 4, 5,6] -> output: 2
+// input [1, 2, 3, 4, 5,6] -> output: 2
 const soChan = [1, 2, 3, 4, 5, 6];
 function timSoChan(arrs) {
   const result2 = arrs.find((item) => item % 2 === 0);
@@ -36,55 +32,53 @@ console.log(timSoChan(soChan));
 
 const arrInput = [1, 2, 3, 4, 5];
 function total(element) {
-  let sum = 0;
-
-  element.forEach((item) => (sum += item));
-  return sum;
+  const totalValue = element.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  return totalValue;
 }
-console.log(total(arrInput));
+console.log("totalValue", total(arrInput));
 
 // 5. Tổng các số chẵn, số lẻ.
 // Input: [1, 2, 3 , 4, 5] -> output: 9
 
-const mang = [1, 2, 3, 4, 5];
-function calculatorTotalOddEven(elements) {
-  let odd = 0;
-  let even = 0;
+const numbers = [1, 2, 3, 4, 5];
+function calc(arr) {
+  return arr.reduce(
+    (prev, curr) => {
+      if (curr % 2 === 0) {
+        return {
+          ...prev,
+          even: prev.even + curr,
+        };
+      } else {
+        return {
+          ...prev,
+          odd: prev.odd + curr,
+        };
+      }
 
-  elements.forEach((e) => {
-    if (e % 2 === 0) {
-      odd = odd + e;
-    }
-
-    if (e % 2 !== 0) {
-      even = even + e;
-    }
-  });
-
-  return { odd, even };
+      // return prev;
+    },
+    { odd: 0, even: 0 }
+  );
 }
-let result = calculatorTotalOddEven(mang);
-console.log(result);
+console.log("cals", calc(numbers));
 
 // 6. Kiểm tra có phải là toàn bộ item trong mảng là số chẵn hay không?
 const arrItem = [1, 2, 3, 4, 5];
 function findEven(arr) {
-  let isEven = true;
-  arr.every((e) => {
-    if (e % 2 !== 0) {
-      isEven = true;
-    }
-  });
-  return isEven
-    ? "Toàn bộ item trong mảng là số lẻ"
-    : "Toàn bộ item trong mảng là số chẵn";
+  const isEven = arr.every((e) => e % 2 === 0);
+  return isEven;
 }
 console.log(findEven(arrItem));
+
 // 7. Kiểm tra xem có số lẻ nào trong mảng?
 const arrOddEven = [1, 2, 3, 4, 5];
 function findOdd(arr) {
-  let resultOdd = arr.filter((e) => e % 2 !== 0);
-  return resultOdd;
+  let isOdd = arr.some((e) => e % 2 !== 0);
+  return isOdd;
 }
 console.log(findOdd(arrOddEven));
 
@@ -95,3 +89,20 @@ function arrage(data) {
   return resultSx;
 }
 console.log(arrage(sxMang));
+//9. bài tt
+const carts = [
+  { id: 1, name: "Ball", price: 10 },
+  { id: 2, name: "Shoes", price: 3 },
+  { id: 3, name: "T-Shirt", price: 20 },
+  { id: 4, name: "Hat", price: 14 },
+  { id: 5, name: "Beef", price: 15 },
+  { id: 6, name: "Table", price: 10 },
+];
+
+// const totalPrice = ???
+function totalCarts(listItems) {
+  let totalPrice = listItems.reduce((a, b) => a + b.price, 1);
+  return totalPrice;
+}
+totalCarts(carts);
+console.log("totalPrice", totalCarts(carts));
